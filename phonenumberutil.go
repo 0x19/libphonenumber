@@ -2731,6 +2731,12 @@ func ParseToNumber(numberToParse, defaultRegion string, phoneNumber *PhoneNumber
 	return parseHelper(numberToParse, defaultRegion, false, true, phoneNumber)
 }
 
+// Same as Parse(string, string), but accepts mutable PhoneNumber as a
+// parameter to decrease object creation when invoked many times.
+func ParseRawToNumber(numberToParse, defaultRegion string, checkRegion bool, phoneNumber *PhoneNumber) error {
+	return parseHelper(numberToParse, defaultRegion, false, checkRegion, phoneNumber)
+}
+
 // Parses a string and returns it in proto buffer format. This method
 // differs from Parse() in that it always populates the raw_input field of
 // the protocol buffer with numberToParse as well as the country_code_source
